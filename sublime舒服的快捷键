@@ -1,0 +1,14 @@
+[
+    { "keys": ["ctrl+shift+f"], "command": "reindent" , "args": {"single_line": false} }, //整理代码快捷键
+    { "keys": ["ctrl+x"], "command": "cut" },//剪切一行
+    { "keys": ["ctrl+shift+t"], "command": "reopen_last_file" },//打开上次的文件
+    { "keys": ["ctrl+n"], "command": "new_file" },//创建新文件
+	{ "keys": ["ctrl+s"], "command": "save" },//保存当前文件
+	{ "keys": ["ctrl+w"], "command": "close" },//关闭当前文件
+	{ "keys": ["f11"], "command": "toggle_full_screen" },//全屏切换
+	{ "keys": ["alt+o"], "command": "switch_file", "args": {"extensions": ["cpp", "cxx", "cc", "c", "hpp", "hxx", "hh", "h", "ipp", "inl", "m", "mm"]} },//打开文件
+	{ "keys": ["ctrl+k"], "command": "toggle_side_bar" },//切换目录
+	{ "keys": ["shift+enter"], "command": "insert", "args": {"characters": "\n"} },//插入一行
+	{ "keys": ["ctrl+shift+up"], "command": "swap_line_up" },//上移行
+	{ "keys": ["ctrl+shift+down"], "command": "swap_line_down" },//下移行
+]
