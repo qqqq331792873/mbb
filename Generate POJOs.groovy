@@ -79,5 +79,3 @@ def javaName(str, capitalize) {
     .replaceAll(/[^\p{javaJavaIdentifierPart}[_]]/, "_")
   capitalize || s.length() == 1? s : Case.LOWER.apply(s[0]) + s[1..-1]
 }
-
-//配置提供来自马冰冰
