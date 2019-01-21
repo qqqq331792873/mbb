@@ -91,30 +91,30 @@ for item in typeJsonResult:
 		print("加载错误",goodsUrl)
 		os._exit(0)
 	#写入表头
-	sheet.range((1,1)).value="商品编号"
-	sheet.range((1,1)).value="商品名称"
-	sheet.range((1,2)).value="商品零售价"
-	sheet.range((1,3)).value="商品标价"
-	sheet.range((1,4)).value="商品尊享价"
-	sheet.range((1,5)).value="详情"
-	sheet.range((1,6)).value="商品图片"
+	sheet.range((1,1)).value="商品图片"
+	sheet.range((1,2)).value="商品编号"
+	sheet.range((1,3)).value="商品名称"
+	sheet.range((1,4)).value="商品零售价"
+	sheet.range((1,5)).value="商品标价"
+	sheet.range((1,6)).value="商品尊享价"
+	sheet.range((1,7)).value="详情"
 	#写入数据
 	for x in range(len(jsonResult)):
+		sheet.range((x+2,1)).row_height=size
 		print("写入"+jsonResult[x]['goods_id']+"号数据")
-		sheet.range((x+2,1)).value=jsonResult[x]['goods_id']
-		sheet.range((x+2,2)).value=jsonResult[x]['goods_name']
-		sheet.range((x+2,3)).value=jsonResult[x]['retail_price']
-		sheet.range((x+2,4)).value=jsonResult[x]['b2b_price']
-		sheet.range((x+2,5)).value=jsonResult[x]['enjoy_price']
-		sheet.range((x+2,6)).value=jsonResult[x]['url']
-		sheet.range((x+2,7)).column_width=size/6
-		sheet.range((x+2,7)).row_height=size
 		imgName = os.path.basename(jsonResult[x]['default_image'])
 		with open(imgFilePath+"/"+imgName,"wb") as img:
 			img.write(requests.get(jsonResult[x]['default_image']).content)
-		sheet.pictures.add(os.path.abspath(imgFilePath+"/"+imgName),width=size,height=size,left=sheet.range("A1:F1").width,top=sheet.range("G1:G"+str(x+1)).height)
+		sheet.pictures.add(os.path.abspath(imgFilePath+"/"+imgName),width=size,height=size,left=0,top=sheet.range("G1:G"+str(x+1)).height)
+		sheet.range((x+2,2)).value=jsonResult[x]['goods_id']
+		sheet.range((x+2,3)).value=jsonResult[x]['goods_name']
+		sheet.range((x+2,4)).value=jsonResult[x]['retail_price']
+		sheet.range((x+2,5)).value=jsonResult[x]['b2b_price']
+		sheet.range((x+2,6)).value=jsonResult[x]['enjoy_price']
+		sheet.range((x+2,7)).value=jsonResult[x]['url']
 	print(item["cate_name"]+"创建完成")
 	sheet.autofit("c")
+	sheet.range("A1").column_width=size/6
 print("所有数据获取完成")
 #保存表格
 book.save('企叮咚.xls')
