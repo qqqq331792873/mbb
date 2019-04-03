@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div>
+			<!-- <label for="priceA">A君</label> -->
+			<input id="priceA" v-model="priceA" placeholder="价格">
+			应付:{{getPrice(priceA)}}
+		</div>
+		<div>
+			<!-- <label for="priceB">B君</label> -->
+			<input id="priceB" v-model="priceB" placeholder="价格">
+			应付:{{getPrice(priceB)}}
+		</div>
+		<div>
+			<!-- <label for="priceC">C君</label> -->
+			<input id="priceC" v-model="priceC" placeholder="价格">
+			应付:{{getPrice(priceC)}}
+		</div>
+		<div>
+			<!-- <label for="priceD">D君</label> -->
+			<input id="priceD" v-model="priceD" placeholder="价格">
+			应付:{{getPrice(priceD)}}
+		</div>
+		<div>
+			<!-- <label for="priceE">E君</label> -->
+			<input id="priceE" v-model="priceE" placeholder="价格">
+			应付:{{getPrice(priceE)}}
+		</div>
+		<div>
+			<!-- <label for="priceF">F君</label> -->
+			<input id="priceF" v-model="priceF" placeholder="价格">
+			应付:{{getPrice(priceF)}}
+		</div>
+		<div>
+			<label for="priceTotal">实付总价</label>
+			<input id="priceTotal" v-model="priceTotal" placeholder="实付总价">
+		</div>
+	</div>
+</body>
+<script>
+	new Vue({
+		el: '#app',
+		data: {
+			priceTotal: 0,
+			priceA: 0,
+			priceB: 0,
+			priceC: 0,
+			priceD: 0,
+			priceE: 0,
+			priceF: 0
+		},
+		computed: {
+			allPrice:function(){
+				return parseFloat(this.priceA)+parseFloat(this.priceB)+parseFloat(this.priceC)+parseFloat(this.priceD)+parseFloat(this.priceE)+parseFloat(this.priceF)
+			},
+			getPrice(){
+				return function (value) {
+					myOwn=(parseFloat(value)/parseFloat(this.allPrice))*parseFloat(this.priceTotal)
+					if(isNaN(myOwn))
+						return 0
+					return myOwn
+				}
+			}
+		}
+	})
+</script>
+</html>
